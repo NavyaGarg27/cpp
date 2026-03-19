@@ -1,3 +1,271 @@
+//CONSTRUCTORS,ENCAPSULATION,OVERLOADING
+
+
+
+// Default Constructor
+/*
+Q: Write a program to demonstrate default constructor.
+#include<iostream>
+using namespace std;
+class A{
+int x;
+public:
+A(){x=0;}
+int get(){return x;}
+};
+int main(){A a; cout<<a.get();}
+*/
+// Parameterized Constructor
+/*
+Q: Program using parameterized constructor.
+
+#include<iostream>
+using namespace std;
+class A{
+int x;
+public:
+A(int a){x=a;}
+int get(){return x;}
+};
+int main(){A a(5); cout<<a.get*/
+// Constructor Overloading
+/*
+Q: Demonstrate constructor overloading.
+
+#include<iostream>
+using namespace std;
+class A{
+int x;
+public:
+A(){x=1;}
+A(int a){x=a;}
+int get(){return x;}
+};
+int main(){A a1,a2(5); cout<<a1.get()<<" "<<a2.get();}
+*/
+//Two Parameter Constructor
+/*
+Q: Add two numbers using constructor.
+
+#include<iostream>
+using namespace std;
+class A{
+int x;
+public:
+A(int a,int b){x=a+b;}
+int get(){return x;}
+};
+int main(){A a(2,3); cout<<a.get();}
+*/
+//Copy Constructor
+/*
+
+#include<iostream>
+using namespace std;
+class A{
+int x;
+public:
+A(int a){x=a;}
+A(A &o){x=o.x;}
+int get(){return x;}
+};
+int main(){A a1(5); A a2=a1; cout<<a2.get();}
+*/
+// Encapsulation
+/*
+Q: Show encapsulation using private variable.
+
+#include<iostream>
+using namespace std;
+class B{
+private:int y;
+public:B(){y=10;}
+int get(){return y;}
+};
+int main(){B b; cout<<b.get();}
+*/
+// Parameterized + Encapsulation
+/*
+Q: Use parameterized constructor with encapsulation.
+
+#include<iostream>
+using namespace std;
+class B{
+int y;
+public:B(int a){y=a;}
+int get(){return y;}
+};
+int main(){B b(9); cout<<b.get();}
+*/
+// Default + Parameterized
+/*
+Q: Use multiple constructors.
+
+#include<iostream>
+using namespace std;
+class B{
+int y;
+public:B(){y=0;} B(int a){y=a;}
+int get(){return y;}
+};
+int main(){B b1,b2(3); cout<<b1.get()+b2.get();}
+*/
+//Multiplication Constructor
+/*Q: Multiply values using constructor.
+
+#include<iostream>
+using namespace std;
+class B{
+int y;
+public:B(int a,int b){y=a*b;}
+int get(){return y;}
+};
+int main(){B b(2,4); cout<<b.get();}
+*/
+//Copy Constructor (Another)
+/*
+Q: Copy object using constructor.
+
+#include<iostream>
+using namespace std;
+class B{
+int y;
+public:B(int a){y=a;}
+B(B &b){y=b.y;}
+int get(){return y;}
+};
+int main(){B b1(6); B b2(b1); cout<<b2.get();}
+*/
+// Subtraction using constructor.
+/*
+#include<iostream>
+using namespace std;
+class C{int z;public:C(int a,int b){z=a-b;}int get(){return z;}};
+int main(){C c(9,5); cout<<c.get();}
+*/
+
+
+//ARRAYS
+
+// Input & Output Array
+/*
+#include<iostream>
+using namespace std;
+int main(){
+int a[5];
+for(int i=0;i<5;i++) cin>>a[i];
+for(int i=0;i<5;i++) cout<<a[i]<<" ";
+}
+*/
+// Sum of Array
+/*#include<iostream>
+using namespace std;
+int main(){
+int a[5]={1,2,3,4,5},sum=0;
+for(int i=0;i<5;i++) sum+=a[i];
+cout<<sum;
+}
+*/
+// Maximum Element
+/*#include<iostream>
+using namespace std;
+int main(){
+int a[5]={2,9,1,6,3},max=a[0];
+for(int i=1;i<5;i++) if(a[i]>max) max=a[i];
+cout<<max;
+}
+*/
+// Minimum Element
+/*#include<iostream>
+using namespace std;
+int main(){
+int a[5]={2,9,1,6,3},min=a[0];
+for(int i=1;i<5;i++) if(a[i]<min) min=a[i];
+cout<<min;
+}
+*/
+// Linear Search
+/*#include<iostream>
+using namespace std;
+int main(){
+int a[5]={1,2,3,4,5},key=3;
+for(int i=0;i<5;i++)
+if(a[i]==key) cout<<"Found";
+}
+*/
+// Reverse Array
+/*#include<iostream>
+using namespace std;
+int main(){
+int a[5]={1,2,3,4,5};
+for(int i=4;i>=0;i--) cout<<a[i]<<" ";
+}
+*/
+// Insert Element
+/*#include<iostream>
+using namespace std;
+int main(){
+int a[6]={1,2,3,4,5},pos=2,val=9;
+for(int i=5;i>pos;i--) a[i]=a[i-1];
+a[pos]=val;
+for(int i=0;i<6;i++) cout<<a[i]<<" ";
+}
+*/
+// Delete Element
+/*#include<iostream>
+using namespace std;
+int main(){
+int a[5]={1,2,3,4,5},pos=2;
+for(int i=pos;i<4;i++) a[i]=a[i+1];
+for(int i=0;i<4;i++) cout<<a[i]<<" ";
+}
+*/
+// Count Even Numbers
+/*#include<iostream>
+using namespace std;
+int main(){
+int a[5]={1,2,3,4,6},c=0;
+for(int i=0;i<5;i++) if(a[i]%2==0) c++;
+cout<<c;
+}
+*/
+//. Count Odd Numbers
+/*#include<iostream>
+using namespace std;
+int main(){
+int a[5]={1,2,3,4,5},c=0;
+for(int i=0;i<5;i++) if(a[i]%2!=0) c++;
+cout<<c;
+}
+*/
+//Copy Array
+/*#include<iostream>
+using namespace std;
+int main(){
+int a[5]={1,2,3,4,5},b[5];
+for(int i=0;i<5;i++) b[i]=a[i];
+for(int i=0;i<5;i++) cout<<b[i]<<" ";
+}*/
+// Frequency of Element
+/*#include<iostream>
+using namespace std;
+int main(){
+int a[5]={1,2,2,3,2},key=2,c=0;
+for(int i=0;i<5;i++) if(a[i]==key) c++;
+cout<<c;
+}*/
+// Palindrome Array
+/*#include<iostream>
+using namespace std;
+int main(){
+int a[5]={1,2,3,2,1},flag=1;
+for(int i=0;i<2;i++)
+if(a[i]!=a[4-i]) flag=0;
+cout<<(flag?"Yes":"No");
+}*/
+
+
+
 //wap to perform arithmetic operation
 /*
 #include<iostream>
@@ -620,7 +888,7 @@ int main()
 */
 
 
-#include <iostream>
+/*#include <iostream>
 using namespace std;
 
 template <class T>
@@ -705,4 +973,70 @@ int main() {
     u.display();
 
     return 0;
-}
+}*/
+/*
+#include <iostream>
+#include <stack>
+using namespace std;
+
+class TextEditor {
+    stack<string> undoStack;
+    stack<string> redoStack;
+    string currentText;
+
+public:
+    void performAction(string action) {
+        undoStack.push(currentText);   
+        currentText += action;        
+
+
+        while (!redoStack.empty()) {
+            redoStack.pop();
+        }
+
+        cout << "Action performed: " << action << endl;
+    }
+
+    void undo() {
+        if (!undoStack.empty()) {
+            redoStack.push(currentText);  
+            currentText = undoStack.top();
+            undoStack.pop();
+            cout << "Undo performed\n";
+        } else {
+            cout << "Nothing to undo\n";
+        }
+    }
+
+    void redo() {
+        if (!redoStack.empty()) {
+            undoStack.push(currentText);   
+            currentText = redoStack.top();
+            redoStack.pop();
+            cout << "Redo performed\n";
+        } else {
+            cout << "Nothing to redo\n";
+        }
+    }
+
+    void display() {
+        cout << "Current Text: " << currentText << endl;
+    }
+};
+
+int main() {
+    TextEditor editor;
+
+    editor.performAction("Hello ");
+    editor.performAction("World!");
+
+    editor.display();
+
+    editor.undo();
+    editor.display();
+
+    editor.redo();
+    editor.display();
+
+    return 0;
+}*/
