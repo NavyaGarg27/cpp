@@ -377,8 +377,7 @@ int main() {
     inv.display();
 
     return 0;
-}*/
-
+}*//*
 #include <iostream>
 using namespace std;
 
@@ -451,6 +450,259 @@ int main() {
     inv.deleteElement(pos);
 
     inv.display();
+
+    return 0;
+}*/
+
+/*#include <iostream>
+using namespace std;
+
+class PatientQueue
+{
+    struct Node
+    {
+        int patientId;
+        Node* next;
+
+        Node(int id, Node* nxt = nullptr)
+        {
+            patientId = id;
+            next = nxt;
+        }
+    };
+
+    Node* head;
+
+    bool isEmpty()
+    {
+        return head == nullptr;
+    }
+
+public:
+    PatientQueue()
+    {
+        head = nullptr;
+    }
+
+
+    void addRegular(int id)
+    {
+        Node* newNode = new Node(id, nullptr);
+
+        if (isEmpty())
+        {
+            head = newNode;
+            return;
+        }
+
+        Node* temp = head;
+        while (temp->next != nullptr)
+        {
+            temp = temp->next;
+        }
+
+        temp->next = newNode;
+    }
+
+    
+    void insertAt(int id, int pos)
+    {
+        if (pos <= 0 || isEmpty())
+        {
+            Node* newNode = new Node(id, head);
+            head = newNode;
+            return;
+        }
+
+        Node* temp = head;
+
+        for (int i = 0; i < pos - 1 && temp != nullptr; i++)
+        {
+            temp = temp->next;
+        }
+
+        if (temp == nullptr)
+        {
+            cout << "Invalid Position\n";
+            return;
+        }
+
+        Node* newNode = new Node(id, temp->next);
+        temp->next = newNode;
+    }
+
+    // Display list
+    void display()
+    {
+        Node* temp = head;
+        while (temp != nullptr)
+        {
+            cout << temp->patientId << " -> ";
+            temp = temp->next;
+        }
+        cout << "NULL\n";
+    }
+};
+
+int main()
+{
+    PatientQueue pq;
+
+    pq.addRegular(101);
+    pq.addRegular(102);
+    pq.addRegular(103);
+
+    pq.insertAt(100, 0);   
+    pq.insertAt(105, 2);   
+
+    pq.display();
+
+    return 0;
+}*/
+
+/*#include <iostream>
+using namespace std;
+
+class BankAcc
+{
+protected:
+    double balance;
+
+public:
+    BankAcc(double bal)
+    {
+        balance = bal;
+    }
+    void deposit(double amount)
+    {
+        balance += amount;   
+    }
+    void withdraw(double amount)
+    {
+        if (amount <= balance)
+        {
+            balance -= amount;  
+        }
+        else
+        {
+            cout << "Insufficient balance!" << endl;
+        }
+    }
+    void checkBal()
+    {
+        cout << "Balance: " << balance << endl;
+    }
+};
+
+class SavingAcc : public BankAcc
+{
+public:
+    SavingAcc(double bal) : BankAcc(bal) {}
+    void intRate()
+    {
+        balance += balance * 0.05;   
+    }
+};
+int main()
+{
+    SavingAcc SA(10000);
+
+    SA.checkBal();       // 10000
+    SA.deposit(5000);
+    SA.checkBal();       // 15000
+    SA.withdraw(2000);
+    SA.checkBal();       // 13000
+    SA.intRate();
+    SA.checkBal();       // 13650
+
+    return 0;
+}
+*/
+
+
+#include <iostream>
+using namespace std;
+
+template <class T>
+class BaseStack {
+protected:
+    T arr[100];
+    int top;
+
+public:
+    BaseStack() {
+        top = -1;
+    }
+
+    void push(T x) {
+        if (top == 99) {
+            cout << "Overflow\n";
+            return;
+        }
+        arr[++top] = x;
+    }
+
+    T pop() {
+        if (top == -1) {
+            cout << "Underflow\n";
+            return -1;
+        }
+        return arr[top--];
+    }
+
+    void display() {
+        for (int i = top; i >= 0; i--) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+};
+class BrowserStack : public BaseStack<int> {
+public:
+    void visitPage(int page) {
+        push(page);
+        cout << "Visited page: " << page << endl;
+    }
+};
+class SecureBrowserStack : public BrowserStack {
+public:
+    void secureVisitPage(int page) {
+        cout << "Secure browsing...\n";
+        visitPage(page); 
+    }
+};
+
+class UndoStack : public BaseStack<int> {
+public:
+    void undo() {
+        int last = pop();
+        if (last != -1)
+            cout << "Undo page: " << last << endl;
+    }
+};
+int main() {
+    BrowserStack b;
+    b.visitPage(10);
+    b.visitPage(20);
+
+    cout << "Browser History: ";
+    b.display();
+
+    SecureBrowserStack sb;
+    sb.secureVisitPage(30);
+    sb.secureVisitPage(40);
+
+    cout << "Secure Browser History: ";
+    sb.display();
+
+    UndoStack u;
+    u.push(100);
+    u.push(200);
+
+    u.undo();
+
+    cout << "Undo Stack: ";
+    u.display();
 
     return 0;
 }
