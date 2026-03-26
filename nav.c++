@@ -1,7 +1,5 @@
 //CONSTRUCTORS,ENCAPSULATION,OVERLOADING
 
-
-
 // Default Constructor
 /*
 Q: Write a program to demonstrate default constructor.
@@ -265,7 +263,7 @@ cout<<(flag?"Yes":"No");
 }*/
 
 
-
+//  CLASSWORK
 //wap to perform arithmetic operation
 /*
 #include<iostream>
@@ -280,7 +278,7 @@ int main()
     return 0;
 }
 */
-
+//Encapsulation
 /*#include <iostream>
 using namespace std;
 
@@ -974,8 +972,8 @@ int main() {
 
     return 0;
 }*/
-/*
-#include <iostream>
+//Text editor
+/*#include <iostream>
 #include <stack>
 using namespace std;
 
@@ -1040,3 +1038,1185 @@ int main() {
 
     return 0;
 }*/
+//Function overloading
+/*#include <iostream>
+using namespace std;
+
+class Test
+{
+    int x = 10;
+    double y = 10.1;
+
+public:
+    void add(int a)
+    {
+        cout << "The sum of x + a is: " << x + a << endl;
+    }
+
+    void add(double b)
+    {
+        cout << "The sum of y + b is: " << y + b << endl;
+    }
+
+    void add(int c, int d)
+    {
+        cout << "The sum of x + c + d is: " << x + c + d << endl;
+    }
+};
+
+int main()
+{
+    Test t;   
+
+    t.add(20);        
+    t.add(20.2);      
+    t.add(20, 30);   
+
+    return 0;
+}*/
+
+
+
+
+
+//LINKED LIST
+//1. Create & Display Linked List
+/*#include <iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+int main() {
+    Node *head = NULL, *temp, *newNode;
+
+    for(int i=1;i<=3;i++){
+        newNode = new Node();
+        cin >> newNode->data;
+        newNode->next = NULL;
+
+        if(head==NULL) head = temp = newNode;
+        else { temp->next = newNode; temp = newNode; }
+    }
+
+    temp = head;
+    while(temp){
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+}*/
+//2. Insert at Beginning
+/*#include <iostream>
+using namespace std;
+
+struct Node { int data; Node* next; };
+
+int main() {
+    Node* head = NULL;
+
+    for(int i=1;i<=3;i++){
+        Node* n = new Node();
+        cin >> n->data;
+        n->next = head;
+        head = n;
+    }
+
+    for(Node* t=head;t;t=t->next)
+        cout << t->data << " ";
+}*/
+//3. Insert at End
+/*#include <iostream>
+using namespace std;
+
+struct Node{int data; Node* next;};
+
+int main(){
+    Node *head=NULL,*temp;
+
+    for(int i=0;i<3;i++){
+        Node* n=new Node();
+        cin>>n->data;
+        n->next=NULL;
+
+        if(!head) head=temp=n;
+        else{ temp->next=n; temp=n; }
+    }
+
+    for(temp=head;temp;temp=temp->next)
+        cout<<temp->data<<" ";
+}*/
+// 4. Count Nodes
+/*#include <iostream>
+using namespace std;
+
+struct Node{int data; Node* next;};
+
+int main(){
+    Node *head=NULL,*t;
+    int count=0;
+
+    for(int i=0;i<3;i++){
+        Node* n=new Node();
+        cin>>n->data;
+        n->next=head;
+        head=n;
+    }
+
+    for(t=head;t;t=t->next) count++;
+
+    cout<<"Count="<<count;
+}*/
+// 5. Search Element
+/*#include <iostream>
+using namespace std;
+
+struct Node{int data; Node* next;};
+
+int main(){
+    Node *head=NULL;
+    for(int i=0;i<3;i++){
+        Node* n=new Node();
+        cin>>n->data;
+        n->next=head;
+        head=n;
+    }
+
+    int key; cin>>key;
+    for(Node* t=head;t;t=t->next){
+        if(t->data==key){
+            cout<<"Found";
+            return 0;
+        }
+    }
+    cout<<"Not Found";
+}*/
+// 6. Delete First Node
+/*#include <iostream>
+using namespace std;
+
+struct Node{int data; Node* next;};
+
+int main(){
+    Node *head=NULL;
+
+    for(int i=0;i<3;i++){
+        Node* n=new Node();
+        cin>>n->data;
+        n->next=head;
+        head=n;
+    }
+
+    Node* temp=head;
+    head=head->next;
+    delete temp;
+
+    for(Node* t=head;t;t=t->next)
+        cout<<t->data<<" ";
+}*/
+// 7. Delete Last Node
+/*#include <iostream>
+using namespace std;
+
+struct Node{int data; Node* next;};
+
+int main(){
+    Node *head=NULL,*temp;
+
+    for(int i=0;i<3;i++){
+        Node* n=new Node();
+        cin>>n->data;
+        n->next=NULL;
+        if(!head) head=temp=n;
+        else{ temp->next=n; temp=n; }
+    }
+
+    temp=head;
+    while(temp->next->next)
+        temp=temp->next;
+
+    delete temp->next;
+    temp->next=NULL;
+
+    for(temp=head;temp;temp=temp->next)
+        cout<<temp->data<<" ";
+}*/
+// 8. Reverse Linked List
+/*#include <iostream>
+using namespace std;
+
+struct Node{int data; Node* next;};
+
+int main(){
+    Node *head=NULL;
+
+    for(int i=0;i<3;i++){
+        Node* n=new Node();
+        cin>>n->data;
+        n->next=head;
+        head=n;
+    }
+
+    Node *prev=NULL,*curr=head,*next;
+
+    while(curr){
+        next=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=next;
+    }
+
+    for(Node* t=prev;t;t=t->next)
+        cout<<t->data<<" ";
+}*/
+// 9. Find Middle
+/*#include <iostream>
+using namespace std;
+
+struct Node{int data; Node* next;};
+
+int main(){
+    Node *head=NULL;
+
+    for(int i=0;i<5;i++){
+        Node* n=new Node();
+        cin>>n->data;
+        n->next=head;
+        head=n;
+    }
+
+    Node *slow=head,*fast=head;
+
+    while(fast && fast->next){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+
+    cout<<"Middle="<<slow->data;
+}*/
+// 10. Sum of Elements
+/*#include <iostream>
+using namespace std;
+
+struct Node{int data; Node* next;};
+
+int main(){
+    Node *head=NULL;
+    int sum=0;
+
+    for(int i=0;i<3;i++){
+        Node* n=new Node();
+        cin>>n->data;
+        n->next=head;
+        head=n;
+    }
+
+    for(Node* t=head;t;t=t->next)
+        sum+=t->data;
+
+    cout<<"Sum="<<sum;
+}*/
+//11. Max Element
+/*#include <iostream>
+using namespace std;
+struct Node{int d;Node* n;};
+int main(){
+Node* h=NULL;
+for(int i=0;i<3;i++){Node* x=new Node();cin>>x->d;x->n=h;h=x;}
+int mx=h->d;
+for(Node* t=h;t;t=t->n) if(t->d>mx) mx=t->d;
+cout<<mx;
+}*/
+//12. Min Element
+/*#include <iostream>
+using namespace std;
+struct Node{int d;Node* n;};
+int main(){
+Node* h=NULL;
+for(int i=0;i<3;i++){Node* x=new Node();cin>>x->d;x->n=h;h=x;}
+int mn=h->d;
+for(Node* t=h;t;t=t->n) if(t->d<mn) mn=t->d;
+cout<<mn;
+}*/
+// 13. Length Recursion
+/*#include <iostream>
+using namespace std;
+struct Node{int d;Node* n;};
+int len(Node* h){ return h?1+len(h->n):0; }
+int main(){
+Node* h=NULL;
+for(int i=0;i<3;i++){Node* x=new Node();cin>>x->d;x->n=h;h=x;}
+cout<<len(h);
+}*/
+// 14. Insert at Position
+/*#include <iostream>
+using namespace std;
+struct Node{int d;Node* n;};
+int main(){
+Node *h=NULL,*t;
+for(int i=0;i<3;i++){
+Node* x=new Node();cin>>x->d;x->n=NULL;
+if(!h)h=t=x; else{t->n=x;t=x;}
+}
+int pos=2,val=99;
+t=h;
+for(int i=1;i<pos-1;i++) t=t->n;
+Node* x=new Node();x->d=val;
+x->n=t->n; t->n=x;
+for(t=h;t;t=t->n) cout<<t->d<<" ";
+}*/
+//15. Delete by Value
+/*#include <iostream>
+using namespace std;
+struct Node{int d;Node* n;};
+int main(){
+Node* h=NULL;
+for(int i=0;i<3;i++){Node* x=new Node();cin>>x->d;x->n=h;h=x;}
+int val; cin>>val;
+Node* t=h;
+while(t->n && t->n->d!=val) t=t->n;
+if(t->n){Node* d=t->n; t->n=d->n; delete d;}
+for(t=h;t;t=t->n) cout<<t->d<<" ";
+}*/
+
+
+//SINGLE INHERITEENCE
+
+// Basic Single Inheritance
+/*#include <iostream>
+using namespace std;
+
+class A {
+public:
+    void show() {
+        cout << "Class A\n";
+    }
+};
+
+class B : public A {
+};
+
+int main() {
+    B obj;
+    obj.show();
+}*/
+// Access Base Class Function
+/*#include <iostream>
+using namespace std;
+
+class Parent {
+public:
+    void display() {
+        cout << "Parent class\n";
+    }
+};
+
+class Child : public Parent {
+};
+
+int main() {
+    Child c;
+    c.display();
+}*/
+// Adding Child Function
+/*#include <iostream>
+using namespace std;
+
+class A {
+public:
+    void showA() {
+        cout << "A class\n";
+    }
+};
+
+class B : public A {
+public:
+    void showB() {
+        cout << "B class\n";
+    }
+};
+
+int main() {
+    B obj;
+    obj.showA();
+    obj.showB();
+}*/
+// Constructor in Inheritance
+/*#include <iostream>
+using namespace std;
+
+class A {
+public:
+    A() {
+        cout << "Constructor A\n";
+    }
+};
+
+class B : public A {
+public:
+    B() {
+        cout << "Constructor B\n";
+    }
+};
+
+int main() {
+    B obj;
+}*/
+// Area Calculation
+/*#include <iostream>
+
+using namespace std;
+
+class Shape {
+protected:
+    int l, b;
+};
+
+class Rectangle : public Shape {
+public:
+    void input() {
+        cin >> l >> b;
+    }
+    void area() {
+        cout << "Area: " << l * b;
+    }
+};
+
+int main() {
+    Rectangle r;
+    r.input();
+    r.area();
+}*/
+//Student Marks
+/*#include <iostream>
+using namespace std;
+
+class Student {
+protected:
+    int marks;
+public:
+    void getMarks() {
+        cin >> marks;
+    }
+};
+
+class Result : public Student {
+public:
+    void display() {
+        cout << "Marks: " << marks;
+    }
+};
+
+int main() {
+    Result r;
+    r.getMarks();
+    r.display();
+}*/
+
+//MULTIPLE INHERITENCE
+
+//Basic Multiple Inheritance
+/*#include <iostream>
+using namespace std;
+
+class A {
+public:
+    void showA() {
+        cout << "Class A\n";
+    }
+};
+
+class B {
+public:
+    void showB() {
+        cout << "Class B\n";
+    }
+};
+
+class C : public A, public B {
+};
+
+int main() {
+    C obj;
+    obj.showA();
+    obj.showB();
+}*/
+// Access Functions from Two Base Classes
+/*#include <iostream>
+using namespace std;
+
+class Father {
+public:
+    void skill() {
+        cout << "Driving\n";
+    }
+};
+
+class Mother {
+public:
+    void talent() {
+        cout << "Cooking\n";
+    }
+};
+
+class Child : public Father, public Mother {
+};
+
+int main() {
+    Child c;
+    c.skill();
+    c.talent();
+}*/
+// Adding Derived Class Function
+/*#include <iostream>
+using namespace std;
+
+class A {
+public:
+    void showA() {
+        cout << "A\n";
+    }
+};
+
+class B {
+public:
+    void showB() {
+        cout << "B\n";
+    }
+};
+
+class C : public A, public B {
+public:
+    void showC() {
+        cout << "C\n";
+    }
+};
+
+int main() {
+    C obj;
+    obj.showA();
+    obj.showB();
+    obj.showC();
+}*/
+//Constructor in Multiple Inheritance
+/*#include <iostream>
+using namespace std;
+
+class A {
+public:
+    A() {
+        cout << "Constructor A\n";
+    }
+};
+
+class B {
+public:
+    B() {
+        cout << "Constructor B\n";
+    }
+};
+
+class C : public A, public B {
+public:
+    C() {
+        cout << "Constructor C\n";
+    }
+};
+
+int main() {
+    C obj;
+}*/
+// Student Result System
+/*#include <iostream>
+using namespace std;
+
+class Marks {
+protected:
+    int m1, m2;
+public:
+    void getMarks() {
+        cin >> m1 >> m2;
+    }
+};
+
+class Sports {
+protected:
+    int score;
+public:
+    void getScore() {
+        cin >> score;
+    }
+};
+
+class Result : public Marks, public Sports {
+public:
+    void total() {
+        cout << "Total: " << m1 + m2 + score;
+    }
+};
+
+int main() {
+    Result r;
+    r.getMarks();
+    r.getScore();
+    r.total();
+}*/
+//Perimeter of rectangle
+/*#include <iostream>
+using namespace std;
+
+class Length {
+protected:
+    int l;
+public:
+    void getLength() {
+        cout << "Enter length: ";
+        cin >> l;
+    }
+};
+
+// Second base class
+class Breadth {
+protected:
+    int b;
+public:
+    void getBreadth() {
+        cout << "Enter breadth: ";
+        cin >> b;
+    }
+};
+
+// Derived class
+class Rectangle : public Length, public Breadth {
+public:
+    void perimeter() {
+        cout << "Perimeter = " << 2 * (l + b);
+    }
+};
+
+int main() {
+    Rectangle r;
+    r.getLength();
+    r.getBreadth();
+    r.perimeter();
+}*/
+
+//MIX CONSTRUCTORS CONCEPTS
+
+// Average of Numbers
+/*#include <iostream>
+using namespace std;
+
+class Average {
+    int sum = 0, n;
+public:
+    Average(int x) {
+        n = x;
+        for(int i=1;i<=n;i++) {
+            sum += i;
+        }
+    }
+    void display() {
+        cout << "Average: " << (float)sum / n;
+    }
+};
+
+int main() {
+    Average a(5);
+    a.display();
+}*/
+// Find Maximum Number
+/*#include <iostream>
+using namespace std;
+
+class Max {
+    int a, b;
+public:
+    Max(int x, int y) {
+        a = x;
+        b = y;
+    }
+    void show() {
+        if(a > b)
+            cout << "Max: " << a;
+        else
+            cout << "Max: " << b;
+    }
+};
+
+int main() {
+    Max m(10, 20);
+    m.show();
+}*/
+// Perimeter of Square
+/*#include <iostream>
+using namespace std;
+
+class Square {
+    int side;
+public:
+    Square(int s) {
+        side = s;
+    }
+    void perimeter() {
+        cout << "Perimeter: " << 4 * side;
+    }
+};
+
+int main() {
+    Square s(5);
+    s.perimeter();
+}*/
+//Area of Square
+/*#include <iostream>
+using namespace std;
+
+class Square {
+    int side;
+public:
+    Square(int s) {
+        side = s;
+    }
+    void area() {
+        cout << "Area: " << side * side;
+    }
+};
+
+int main() {
+    Square s(5);
+    s.area();
+}*/
+//Area of Rectangle
+/*#include <iostream>
+using namespace std;
+
+class Rectangle {
+    int l, b;
+public:
+    Rectangle(int x, int y) {
+        l = x;
+        b = y;
+    }
+    void area() {
+        cout << "Area: " << l * b;
+    }
+};
+
+int main() {
+    Rectangle r(4, 6);
+    r.area();
+}*/
+//Perimeter of Square
+/*#include <iostream>
+using namespace std;
+
+class Square {
+    int side;
+public:
+    Square(int s) {
+        side = s;
+    }
+    void perimeter() {
+        cout << "Perimeter: " << 4 * side;
+    }
+};
+
+int main() {
+    Square s(5);
+    s.perimeter();
+}*/
+//Area of Circle
+/*#include <iostream>
+using namespace std;
+
+class Circle {
+    float r;
+public:
+    Circle(float radius) {
+        r = radius;
+    }
+    void area() {
+        cout << "Area: " << 3.14 * r * r;
+    }
+};
+
+int main() {
+    Circle c(5);
+    c.area();
+}*/
+// Perimeter of Circle (Circumference)
+/*#include <iostream>
+using namespace std;
+
+class Circle {
+    float r;
+public:
+    Circle(float radius) {
+        r = radius;
+    }
+    void perimeter() {
+        cout << "Perimeter: " << 2 * 3.14 * r;
+    }
+};
+
+int main() {
+    Circle c(5);
+    c.perimeter();
+}*/
+
+//MULTILEVEL INHERITENCE
+
+// Sum
+/*#include <iostream>
+using namespace std;
+
+class A {
+protected:
+    int a, b;
+public:
+    void get() {
+        cout << "Enter two numbers: ";
+        cin >> a >> b;
+    }
+};
+
+class B : public A {
+public:
+    int sum() {
+        return a + b;
+    }
+};
+
+class C : public B {
+public:
+    void show() {
+        cout << "Sum = " << sum();
+    }
+};
+
+int main() {
+    C obj;
+    obj.get();
+    obj.show();
+    return 0;
+}*/
+//. Subtraction
+/*#include <iostream>
+using namespace std;
+
+class A {
+protected:int a,b;
+public:void get(){cin>>a>>b;}
+};
+
+class B:public A {
+public:int sub(){return a-b;}
+};
+
+class C:public B {
+public:void show(){cout<<"Subtraction="<<sub();}
+};
+
+int main(){
+    C obj; obj.get(); obj.show();
+}*/
+// Multiplication
+/*#include <iostream>
+using namespace std;
+
+class A {
+protected:int a,b;
+public:void get(){cin>>a>>b;}
+};
+
+class B:public A {
+public:int mul(){return a*b;}
+};
+
+class C:public B {
+public:void show(){cout<<"Multiplication="<<mul();}
+};
+
+int main(){
+    C obj; obj.get(); obj.show();
+}*/
+// Division
+/*#include <iostream>
+using namespace std;
+
+class A {
+protected:int a,b;
+public:void get(){cin>>a>>b;}
+};
+
+class B:public A {
+public:float div(){return (float)a/b;}
+};
+
+class C:public B {
+public:void show(){cout<<"Division="<<div();}
+};
+
+int main(){
+    C obj; obj.get(); obj.show();
+}*/
+//Average
+/*#include <iostream>
+using namespace std;
+
+class A {
+protected:int a,b;
+public:void get(){cin>>a>>b;}
+};
+
+class B:public A {
+public:float avg(){return (a+b)/2.0;}
+};
+
+class C:public B {
+public:void show(){cout<<"Average="<<avg();}
+};
+
+int main(){
+    C obj; obj.get(); obj.show();
+}*/
+// Maximum
+/*#include <iostream>
+using namespace std;
+
+class A {
+protected:int a,b;
+public:void get(){cin>>a>>b;}
+};
+
+class B:public A {
+public:int max(){return (a>b)?a:b;}
+};
+
+class C:public B {
+public:void show(){cout<<"Max="<<max();}
+};
+
+int main(){
+    C obj; obj.get(); obj.show();
+}*/
+// Minimum
+/*#include <iostream>
+using namespace std;
+
+class A {
+protected:int a,b;
+public:void get(){cin>>a>>b;}
+};
+
+class B:public A {
+public:int min(){return (a<b)?a:b;}
+};
+
+class C:public B {
+public:void show(){cout<<"Min="<<min();}
+};
+
+int main(){
+    C obj; obj.get(); obj.show();
+}*/
+// Square
+/*#include <iostream>
+using namespace std;
+
+class A {
+protected:int a;
+public:void get(){cin>>a;}
+};
+
+class B:public A {
+public:int square(){return a*a;}
+};
+
+class C:public B {
+public:void show(){cout<<"Square="<<square();}
+};
+
+int main(){
+    C obj; obj.get(); obj.show();
+}*/
+// Cube
+/*#include <iostream>
+using namespace std;
+
+class A {
+protected:int a;
+public:void get(){cin>>a;}
+};
+
+class B:public A {
+public:int cube(){return a*a*a;}
+};
+
+class C:public B {
+public:void show(){cout<<"Cube="<<cube();}
+};
+
+int main(){
+    C obj; obj.get(); obj.show();
+}*/
+//Even / Odd
+/*#include <iostream>
+using namespace std;
+
+class A {
+protected:int a;
+public:void get(){cin>>a;}
+};
+
+class B:public A {
+public:void check(){
+    if(a%2==0) cout<<"Even";
+    else cout<<"Odd";
+}
+};
+
+class C:public B {
+public:void show(){check();}
+};
+
+int main(){
+    C obj; obj.get(); obj.show();
+}*/
+//Swap
+/*#include <iostream>
+using namespace std;
+
+class A {
+protected:int a,b;
+public:void get(){cin>>a>>b;}
+};
+
+class B:public A {
+public:void swap(){
+    int t=a; a=b; b=t;
+}
+};
+
+class C:public B {
+public:void show(){
+    swap();
+    cout<<"After Swap: "<<a<<" "<<b;
+}
+};
+
+int main(){
+    C obj; obj.get(); obj.show();
+}*/
+// Largest of 3
+/*#include <iostream>
+using namespace std;
+
+class A {
+protected:int a,b,c;
+public:void get(){cin>>a>>b>>c;}
+};
+
+class B:public A {
+public:int largest(){
+    if(a>b && a>c) return a;
+    else if(b>c) return b;
+    else return c;
+}
+};
+
+class C:public B {
+public:void show(){cout<<"Largest="<<largest();}
+};
+
+int main(){
+    C obj; obj.get(); obj.show();
+}*/
+// Sum of 3 Numbers
+/*#include <iostream>
+using namespace std;
+
+class A {
+protected:int a,b,c;
+public:void get(){cin>>a>>b>>c;}
+};
+
+class B:public A {
+public:int sum(){return a+b+c;}
+};
+
+class C:public B {
+public:void show(){cout<<"Sum="<<sum();}
+};
+
+int main(){
+    C obj; obj.get(); obj.show();
+}*/
+// Average of 3 Numbers
+/*#include <iostream>
+using namespace std;
+
+class A {
+protected:int a,b,c;
+public:void get(){cin>>a>>b>>c;}
+};
+
+class B:public A {
+public:float avg(){return (a+b+c)/3.0;}
+};
+
+class C:public B {
+public:void show(){cout<<"Average="<<avg();}
+};
+
+int main(){
+    C obj; obj.get(); obj.show();
+}*/
+// Reverse Number
+/*#include <iostream>
+using namespace std;
+
+class A {
+protected:int n;
+public:void get(){cin>>n;}
+};
+
+class B:public A {
+public:int reverse(){
+    int r=0;
+    while(n>0){
+        r=r*10+n%10;
+        n/=10;
+    }
+    return r;
+}
+};
+
+class C:public B {
+public:void show(){cout<<"Reverse="<<reverse();}
+};
+
+int main(){
+    C obj; obj.get(); obj.show();
+}*/
+// Modulus
+#include <iostream>
+using namespace std;
+
+class A {
+protected:int a,b;
+public:void get(){cin>>a>>b;}
+};
+
+class B:public A {
+public:int mod(){return a%b;}
+};
+
+class C:public B {
+public:void show(){cout<<"Modulus="<<mod();}
+};
+
+int main(){
+    C obj; obj.get(); obj.show();
+}
