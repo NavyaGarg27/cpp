@@ -2201,7 +2201,7 @@ int main(){
     C obj; obj.get(); obj.show();
 }*/
 // Modulus
-#include <iostream>
+/*#include <iostream>
 using namespace std;
 
 class A {
@@ -2219,4 +2219,330 @@ public:void show(){cout<<"Modulus="<<mod();}
 
 int main(){
     C obj; obj.get(); obj.show();
+}*/
+
+//HERARCHICAL INHERITANCE
+
+// Simple Hierarchical Inheritance
+/*#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    void show() { cout << "Base class\n"; }
+};
+
+class A : public Base {
+public:
+    void displayA() { cout << "Class A\n"; }
+};
+
+class B : public Base {
+public:
+    void displayB() { cout << "Class B\n"; }
+};
+
+int main() {
+    A a; B b;
+    a.show(); a.displayA();
+    b.show(); b.displayB();
+}*/
+// Sum
+/*#include <iostream>
+using namespace std;
+
+class Number {
+public:
+    int a=10, b=5;
+};
+
+class Sum : public Number {
+public:
+    void calc() { cout << "Sum = " << a + b; }
+};
+
+class Dummy : public Number {};
+
+int main() {
+    Sum s;
+    s.calc();
+}*/
+// Multiply
+/*#include <iostream>
+using namespace std;
+
+class Num { public: int a=4, b=3; };
+
+class Mul : public Num {
+public:
+    void calc() { cout << "Mul = " << a*b; }
+};
+
+class Test : public Num {};
+
+int main() {
+    Mul m; m.calc();
+}*/
+// Division
+/*#include <iostream>
+using namespace std;
+
+class Num { public: int a=20, b=4; };
+
+class Div : public Num {
+public:
+    void calc() { cout << "Div = " << a/b; }
+};
+
+class Test : public Num {};
+
+int main() {
+    Div d; d.calc();
+}*/
+// Even Number
+/*#include <iostream>
+using namespace std;
+
+class Num { public: int n=6; };
+
+class Even : public Num {
+public:
+    void check() {
+        if(n%2==0) cout << "Even";
+    }
+};
+
+class Odd : public Num {};
+
+int main() {
+    Even e; e.check();
+}*/
+// Odd Number
+/*#include <iostream>
+using namespace std;
+
+class Num { public: int n=7; };
+
+class Odd : public Num {
+public:
+    void check() {
+        if(n%2!=0) cout << "Odd";
+    }
+};
+
+class Even : public Num {};
+
+int main() {
+    Odd o; o.check();
+}*/
+// Maximum
+/*#include <iostream>
+using namespace std;
+
+class Num { public: int a=10, b=15; };
+
+class Max : public Num {
+public:
+    void find() {
+        cout << "Max = " << (a>b?a:b);
+    }
+};
+
+class Min : public Num {};
+
+int main() {
+    Max m; m.find();
+}*/
+// Minimum
+/*#include <iostream>
+using namespace std;
+
+class Num { public: int a=10, b=5; };
+
+class Min : public Num {
+public:
+    void find() {
+        cout << "Min = " << (a<b?a:b);
+    }
+};
+
+class Max : public Num {};
+
+int main() {
+    Min m; m.find();
+}*/
+// Square
+/*#include <iostream>
+using namespace std;
+
+class Num { public: int n=5; };
+
+class Square : public Num {
+public:
+    void calc() { cout << "Square = " << n*n; }
+};
+
+class Cube : public Num {};
+
+int main() {
+    Square s; s.calc();
+}*/
+// Cube
+/*#include <iostream>
+using namespace std;
+
+class Num { public: int n=3; };
+
+class Cube : public Num {
+public:
+    void calc() { cout << "Cube = " << n*n*n; }
+};
+
+class Square : public Num {};
+
+int main() {
+    Cube c; c.calc();
+}*/
+
+//HYBRID INHERTANCE
+
+//Sum
+/*#include <iostream>
+using namespace std;
+
+class A {
+protected:int a,b;
+public:void get(){cin>>a>>b;}
+};
+
+class B:virtual public A {};
+class C:virtual public A {};
+
+class D:public B, public C {
+public:void show(){cout<<"Sum="<<a+b;}
+};
+
+int main(){
+    D obj; obj.get(); obj.show();
+}*/
+// Subtraction
+/*#include <iostream>
+using namespace std;
+
+class A{protected:int a,b; public:void get(){cin>>a>>b;}};
+class B:virtual public A{};
+class C:virtual public A{};
+
+class D:public B,public C{
+public:void show(){cout<<"Sub="<<a-b;}
+};
+
+int main(){D obj; obj.get(); obj.show();}*/
+// Multiplication
+/*#include <iostream>
+using namespace std;
+
+class A{protected:int a,b; public:void get(){cin>>a>>b;}};
+class B:virtual public A{};
+class C:virtual public A{};
+
+class D:public B,public C{
+public:void show(){cout<<"Mul="<<a*b;}
+};
+
+int main(){D obj; obj.get(); obj.show();}*/
+// Division
+/*#include <iostream>
+using namespace std;
+
+class A{protected:int a,b; public:void get(){cin>>a>>b;}};
+class B:virtual public A{};
+class C:virtual public A{};
+
+class D:public B,public C{
+public:void show(){cout<<"Div="<<(float)a/b;}
+};
+
+int main(){D obj; obj.get(); obj.show();}*/
+// Average
+/*#include <iostream>
+using namespace std;
+
+class A{protected:int a,b; public:void get(){cin>>a>>b;}};
+class B:virtual public A{};
+class C:virtual public A{};
+
+class D:public B,public C{
+public:void show(){cout<<"Avg="<<(a+b)/2.0;}
+};
+
+int main(){D obj; obj.get(); obj.show();}*/
+// Maximum
+/*#include <iostream>
+using namespace std;
+
+class A{protected:int a,b; public:void get(){cin>>a>>b;}};
+class B:virtual public A{};
+class C:virtual public A{};
+
+class D:public B,public C{
+public:void show(){cout<<"Max="<<(a>b?a:b);}
+};
+
+int main(){D obj; obj.get(); obj.show();}*/
+// Minimum
+/*#include <iostream>
+using namespace std;
+
+class A{protected:int a,b; public:void get(){cin>>a>>b;}};
+class B:virtual public A{};
+class C:virtual public A{};
+
+class D:public B,public C{
+public:void show(){cout<<"Min="<<(a<b?a:b);}
+};
+
+int main(){D obj; obj.get(); obj.show();}*/
+
+//Square
+/*#include <iostream>
+using namespace std;
+
+class A{protected:int a; public:void get(){cin>>a;}};
+class B:virtual public A{};
+class C:virtual public A{};
+
+class D:public B,public C{
+public:void show(){cout<<"Square="<<a*a;}
+};
+
+int main(){D obj; obj.get(); obj.show();}*/
+// Cube
+/*#include <iostream>
+using namespace std;
+
+class A{protected:int a; public:void get(){cin>>a;}};
+class B:virtual public A{};
+class C:virtual public A{};
+
+class D:public B,public C{
+public:void show(){cout<<"Cube="<<a*a*a;}
+};
+
+int main(){D obj; obj.get(); obj.show();}*/
+// Even / Odd
+/*#include <iostream>
+using namespace std;
+
+class A{protected:int a; public:void get(){cin>>a;}};
+class B:virtual public A{};
+class C:virtual public A{};
+
+class D:public B,public C{
+public:void show(){
+    if(a%2==0) cout<<"Even";
+    else cout<<"Odd";
 }
+};
+
+int main(){D obj; obj.get(); obj.show();}*/
