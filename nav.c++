@@ -2546,3 +2546,1330 @@ public:void show(){
 };
 
 int main(){D obj; obj.get(); obj.show();}*/
+
+//Operator overloadding
+/*#include <iostream>
+using namespace std;
+
+class test {
+    int x;
+
+public:
+    test(int x) {
+        this->x = x;
+    }
+
+    test operator++() {
+        test t(0);
+        t.x = ++x;
+        return t;
+    }
+
+    void display() {
+        cout << "Value of x = " << x;
+    }
+};
+
+int main() {
+    test t(5);
+    ++t;
+    t.display();
+    return 0;
+}*/
+//Sum operator overloading
+/*#include <iostream>
+using namespace std;
+
+class Account {
+    int bal;
+
+public:
+    Account(int b) {
+        bal = b;
+    }
+    Account operator+(Account obj) {
+        return Account(bal + obj.bal);
+    }
+    void display() {
+        cout << "Balance = " << bal << endl;
+    }
+};
+
+int main() {
+    Account a(1000);
+    Account b(2000);
+
+    Account sum = a + b;
+
+    sum.display();
+
+    return 0;
+}*/
+/*#include <iostream>
+using namespace std;
+
+class Student {
+    int marks;
+
+public:
+    Student(int m) {
+        marks = m;
+    }
+    friend ostream& operator<<(ostream &out, Student s);
+};
+ostream& operator<<(ostream &out, Student s) {
+    out << "Marks = " << s.marks;
+    return out;
+}
+
+int main() {
+    Student s(95);
+    cout << s;
+
+    return 0;
+}*/
+
+//TERM 2 PAPER
+/*#include <iostream>
+using namespace std;
+
+class Student {
+    int marks;
+public:
+    Student(int m) {
+        marks = m;
+    }
+
+    bool operator==(Student s) {
+        return marks == s.marks;
+    }
+};
+
+int main() {
+    Student s1(90), s2(90);
+
+    if (s1 == s2)
+        cout << "Equal Marks";
+    else
+        cout << "Not Equal";
+
+    return 0;
+}*/
+//5 MARK QUESTION
+/*#include <iostream>
+
+
+using namespace std;
+
+// Base class
+class Person {
+public:
+    string name;
+};
+
+
+class Student : public Person {
+public:
+    int marks[5];
+
+    void calculate() {
+        int sum = 0;
+        for(int i = 0; i < 5; i++)
+            sum += marks[i];
+
+        float gpa = sum / 5.0;
+        cout << "Student GPA: " << gpa << endl;
+    }
+};
+
+
+class Professor : public Person {
+public:
+    int salary;
+
+    void calculate() {
+        cout << "Professor Salary: " << salary << endl;
+    }
+};
+
+int main() {
+    Student s;
+    s.name = "Navya";
+    s.marks[0]=80; s.marks[1]=85; s.marks[2]=90; s.marks[3]=88; s.marks[4]=92;
+    s.calculate();
+
+    Professor p;
+    p.name = "Dr. Sharma";
+    p.salary = 50000;
+    p.calculate();
+
+    return 0;
+}
+
+// Undo Feature in Text Editor
+
+ Real-world: Like Ctrl+Z in Word/Notepad
+
+#include <iostream>
+#include <stack>
+using namespace std;
+
+class StackBase {
+protected:
+    stack<string> s;
+public:
+    void push(string x) { s.push(x); }
+    void pop() { if(!s.empty()) s.pop(); }
+};
+
+class TextEditor : public StackBase {
+public:
+    void write(string text) {
+        push(text);
+        cout << "Written: " << text << endl;
+    }
+    void undo() {
+        if(!s.empty()) {
+            cout << "Undo: " << s.top() << endl;
+            pop();
+        }
+    }
+};
+
+int main() {
+    TextEditor t;
+    t.write("Hello");
+    t.write("World");
+    t.undo();
+}
+
+2. Redo System
+#include <iostream>
+#include <stack>
+using namespace std;
+
+class StackBase {
+protected:
+    stack<string> undoS, redoS;
+};
+
+class RedoSystem : public StackBase {
+public:
+    void action(string x) {
+        undoS.push(x);
+    }
+    void undo() {
+        if(!undoS.empty()) {
+            redoS.push(undoS.top());
+            undoS.pop();
+        }
+    }
+    void redo() {
+        if(!redoS.empty()) {
+            cout << "Redo: " << redoS.top() << endl;
+            redoS.pop();
+        }
+    }
+};
+
+int main() {
+    RedoSystem r;
+    r.action("Edit");
+    r.undo();
+    r.redo();
+}
+✅ 3. Browser Back
+#include <iostream>
+#include <stack>
+using namespace std;
+
+class StackBase {
+protected:
+    stack<string> s;
+};
+
+class BrowserBack : public StackBase {
+public:
+    void visit(string page) {
+        s.push(page);
+    }
+    void back() {
+        if(!s.empty()) {
+            s.pop();
+            cout << "Back\n";
+        }
+    }
+};
+
+int main() {
+    BrowserBack b;
+    b.visit("A");
+    b.visit("B");
+    b.back();
+}
+
+1. Function Overloading (Sum)
+#include <iostream>
+using namespace std;
+
+class Calc {
+public:
+    int sum(int a, int b) { return a + b; }
+    int sum(int a, int b, int c) { return a + b + c; }
+};
+
+int main() {
+    Calc c;
+    cout << c.sum(2,3) << endl;
+    cout << c.sum(1,2,3);
+}
+✅ 2. Function Overloading (Area)
+#include <iostream>
+using namespace std;
+
+class Area {
+public:
+    int calc(int s) { return s*s; }
+    int calc(int l, int b) { return l*b; }
+};
+
+int main() {
+    Area a;
+    cout << a.calc(4) << endl;
+    cout << a.calc(4,5);
+}
+✅ 3. Operator Overloading (+)
+#include <iostream>
+using namespace std;
+
+class Num {
+    int x;
+public:
+    Num(int a) { x = a; }
+    Num operator + (Num n) {
+        return Num(x + n.x);
+    }
+    void show() { cout << x; }
+};
+
+int main() {
+    Num n1(5), n2(10);
+    Num n3 = n1 + n2;
+    n3.show();
+}
+✅ 4. Operator Overloading (-)
+#include <iostream>
+using namespace std;
+
+class Num {
+    int x;
+public:
+    Num(int a) { x = a; }
+    Num operator - (Num n) {
+        return Num(x - n.x);
+    }
+    void show() { cout << x; }
+};
+
+int main() {
+    Num n1(10), n2(4);
+    Num n3 = n1 - n2;
+    n3.show();
+}
+✅ 5. Operator Overloading (*)
+#include <iostream>
+using namespace std;
+
+class Num {
+    int x;
+public:
+    Num(int a) { x = a; }
+    Num operator * (Num n) {
+        return Num(x * n.x);
+    }
+    void show() { cout << x; }
+};
+
+int main() {
+    Num n1(3), n2(4);
+    Num n3 = n1 * n2;
+    n3.show();
+}
+
+6. Operator Overloading (==)
+#include <iostream>
+using namespace std;
+
+class Num {
+    int x;
+public:
+    Num(int a) { x = a; }
+    bool operator == (Num n) {
+        return x == n.x;
+    }
+};
+
+int main() {
+    Num n1(5), n2(5);
+    if(n1 == n2) cout << "Equal";
+}
+✅ 7. Function Overloading (Max)
+#include <iostream>
+using namespace std;
+
+class Max {
+public:
+    int find(int a, int b) { return (a>b)?a:b; }
+    float find(float a, float b) { return (a>b)?a:b; }
+};
+
+int main() {
+    Max m;
+    cout << m.find(2,3) << endl;
+    cout << m.find(2.5f,3.5f);
+}
+✅ 8. Operator Overloading (++)
+#include <iostream>
+using namespace std;
+
+class Num {
+    int x;
+public:
+    Num(int a) { x = a; }
+    void operator ++ () {
+        x++;
+    }
+    void show() { cout << x; }
+};
+
+int main() {
+    Num n(5);
+    ++n;
+    n.show();
+}
+✅ 9. Function Overloading (Print)
+#include <iostream>
+using namespace std;
+
+class Print {
+public:
+    void show(int a) { cout << a << endl; }
+    void show(string s) { cout << s; }
+};
+
+int main() {
+    Print p;
+    p.show(10);
+    p.show("Hello");
+}
+✅ 10. Operator Overloading (>)
+#include <iostream>
+using namespace std;
+
+class Num {
+    int x;
+public:
+    Num(int a) { x = a; }
+    bool operator > (Num n) {
+        return x > n.x;
+    }
+};
+
+int main() {
+    Num n1(10), n2(5);
+    if(n1 > n2) cout << "Greater";
+}
+
+11. Basic Function Overriding
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    virtual void show() { cout << "Base"; }
+};
+
+class Derived : public Base {
+public:
+    void show() { cout << "Derived"; }
+};
+
+int main() {
+    Base* b;
+    Derived d;
+    b = &d;
+    b->show();
+}
+✅ 12. Shape Example
+#include <iostream>
+using namespace std;
+
+class Shape {
+public:
+    virtual void draw() { cout << "Shape"; }
+};
+
+class Circle : public Shape {
+public:
+    void draw() { cout << "Circle"; }
+};
+
+int main() {
+    Shape* s = new Circle();
+    s->draw();
+}
+✅ 13. Animal Sound
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    virtual void sound() { cout << "Animal sound"; }
+};
+
+class Dog : public Animal {
+public:
+    void sound() { cout << "Bark"; }
+};
+
+int main() {
+    Animal* a = new Dog();
+    a->sound();
+}
+✅ 14. Vehicle
+#include <iostream>
+using namespace std;
+
+class Vehicle {
+public:
+    virtual void run() { cout << "Vehicle running"; }
+};
+
+class Car : public Vehicle {
+public:
+    void run() { cout << "Car running"; }
+};
+
+int main() {
+    Vehicle* v = new Car();
+    v->run();
+}
+✅ 15. Bank
+#include <iostream>
+using namespace std;
+
+class Bank {
+public:
+    virtual void rate() { cout << "Base rate"; }
+};
+
+class SBI : public Bank {
+public:
+    void rate() { cout << "SBI rate"; }
+};
+
+int main() {
+    Bank* b = new SBI();
+    b->rate();
+}*/
+
+/*#include <iostream>
+#include <fstream>
+using namespace std;
+
+class Student {
+public:
+    int id;
+    string name;
+    float marks;
+
+    void input() {
+        cout << "Enter student ID: ";
+        cin >> id;
+
+        cout << "Enter student marks: ";
+        cin >> marks;
+
+        cout << "Enter student name: ";
+        cin >> name;
+    }
+
+    void display() {
+        cout << "ID: " << id << endl;
+        cout << "Marks: " << marks << endl;
+        cout << "Name: " << name << endl;
+    }
+};
+
+// Add Student
+void addStudent() {
+    Student s;
+    ofstream file("student.txt", ios::app); 
+
+    s.input();
+
+    file.write((char*)&s, sizeof(s));
+    file.close();
+
+    cout << "Details entered successfully!\n";
+}
+void viewStudent() {
+    Student s;
+    ifstream file("student.txt");
+
+    while (file.read((char*)&s, sizeof(s))) {
+        s.display();
+    }
+
+    file.close();
+}
+
+void searchStudent() {
+    int searchId;
+    cout << "Enter ID to search: ";
+    cin >> searchId;
+
+    Student s;
+    ifstream file("student.txt");
+
+    bool found = false;
+
+    while (file.read((char*)&s, sizeof(s))) {
+        if (s.id == searchId) {
+            cout << "Student Found:\n";
+            s.display();
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        cout << "Student not found!\n";
+    }
+
+    file.close();
+}
+int main() {
+    int ch;
+
+    do {
+        cout << "\n--- Student Management System ---\n";
+        cout << "1. Add Student\n";
+        cout << "2. View Students\n";
+        cout << "3. Search Student\n";
+        cout << "4. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> ch;
+
+        switch (ch) {
+            case 1: addStudent(); break;
+            case 2: viewStudent(); break;
+            case 3: searchStudent(); break;
+            case 4: cout << "Exiting...\n"; break;
+            default: cout << "Invalid choice!\n";
+        }
+
+    } while (ch != 4);
+
+    return 0;
+}\
+
+.
+
+🔹 1–10: Basic ofstream (write files)
+// 1
+#include <fstream>
+using namespace std;
+int main() {
+    ofstream file("a.txt");
+    file << "Hello";
+}
+// 2
+#include <fstream>
+using namespace std;
+int main() {
+    ofstream f("b.txt");
+    f << 100;
+}
+// 3
+#include <fstream>
+using namespace std;
+int main() {
+    ofstream f("c.txt");
+    f << "Line1\nLine2";
+}
+// 4
+#include <fstream>
+using namespace std;
+int main() {
+    ofstream f("d.txt");
+    for(int i=1;i<=5;i++) f<<i<<" ";
+}
+// 5
+#include <fstream>
+using namespace std;
+int main() {
+    ofstream f("e.txt");
+    f<<"Navya";
+}
+// 6
+#include <fstream>
+using namespace std;
+int main() {
+    ofstream f("f.txt");
+    f<<3.14;
+}
+// 7
+#include <fstream>
+using namespace std;
+int main() {
+    ofstream f("g.txt");
+    f<<"C++ File Handling";
+}
+// 8
+#include <fstream>
+using namespace std;
+int main() {
+    ofstream f("h.txt");
+    char ch='A';
+    f<<ch;
+}
+// 9
+#include <fstream>
+using namespace std;
+int main() {
+    ofstream f("i.txt");
+    f<<"Test";
+}
+// 10
+#include <fstream>
+using namespace std;
+int main() {
+    ofstream f("j.txt");
+    f<<"Done";
+}
+🔹 11–20: ifstream (read files)
+// 11
+#include <fstream>
+#include <iostream>
+using namespace std;
+int main() {
+    ifstream f("a.txt");
+    string s;
+    f>>s;
+    cout<<s;
+}
+// 12
+#include <fstream>
+#include <iostream>
+using namespace std;
+int main() {
+    ifstream f("b.txt");
+    int x;
+    f>>x;
+    cout<<x;
+}
+// 13
+#include <fstream>
+#include <iostream>
+using namespace std;
+int main() {
+    ifstream f("c.txt");
+    string line;
+    getline(f,line);
+    cout<<line;
+}
+// 14
+#include <fstream>
+#include <iostream>
+using namespace std;
+int main() {
+    ifstream f("d.txt");
+    int x;
+    while(f>>x) cout<<x<<" ";
+}
+// 15
+#include <fstream>
+#include <iostream>
+using namespace std;
+int main() {
+    ifstream f("e.txt");
+    char ch;
+    f>>ch;
+    cout<<ch;
+}
+// 16
+#include <fstream>
+#include <iostream>
+using namespace std;
+int main() {
+    ifstream f("f.txt");
+    float x;
+    f>>x;
+    cout<<x;
+}
+// 17
+#include <fstream>
+#include <iostream>
+using namespace std;
+int main() {
+    ifstream f("g.txt");
+    string s;
+    getline(f,s);
+    cout<<s;
+}
+// 18
+#include <fstream>
+#include <iostream>
+using namespace std;
+int main() {
+    ifstream f("h.txt");
+    char ch;
+    f>>ch;
+    cout<<ch;
+}
+// 19
+#include <fstream>
+#include <iostream>
+using namespace std;
+int main() {
+    ifstream f("i.txt");
+    string s;
+    f>>s;
+    cout<<s;
+}
+// 20
+#include <fstream>
+#include <iostream>
+using namespace std;
+int main() {
+    ifstream f("j.txt");
+    string s;
+    f>>s;
+    cout<<s;
+}
+🔹 21–30: fstream (read + write)
+// 21
+#include <fstream>
+using namespace std;
+int main() {
+    fstream f("x.txt", ios::out);
+    f<<"Hello";
+}
+// 22
+#include <fstream>
+#include <iostream>
+using namespace std;
+int main() {
+    fstream f("x.txt", ios::in);
+    string s; f>>s;
+    cout<<s;
+}
+// 23
+#include <fstream>
+using namespace std;
+int main() {
+    fstream f("y.txt", ios::out);
+    f<<123;
+}
+// 24
+#include <fstream>
+#include <iostream>
+using namespace std;
+int main() {
+    fstream f("y.txt", ios::in);
+    int x; f>>x;
+    cout<<x;
+}
+// 25
+#include <fstream>
+using namespace std;
+int main() {
+    fstream f("z.txt", ios::out);
+    f<<"Test";
+}
+// 26
+#include <fstream>
+using namespace std;
+int main() {
+    fstream f("z.txt", ios::app);
+    f<<"Append";
+}
+// 27
+#include <fstream>
+using namespace std;
+int main() {
+    fstream f("a1.txt", ios::out);
+    f<<3.5;
+}
+// 28
+#include <fstream>
+#include <iostream>
+using namespace std;
+int main() {
+    fstream f("a1.txt", ios::in);
+    float x; f>>x;
+    cout<<x;
+}
+// 29
+#include <fstream>
+using namespace std;
+int main() {
+    fstream f("file.txt", ios::out);
+    f<<"Done";
+}
+// 30
+#include <fstream>
+#include <iostream>
+using namespace std;
+int main() {
+    fstream f("file.txt", ios::in);
+    string s; f>>s;
+    cout<<s;
+}
+🔹 30
+
+Q. Read a string from a file using fstream and display it.
+
+#include <fstream>
+#include <iostream>
+using namespace std;
+
+int main() {
+    fstream f("file.txt", ios::out);
+    f << "Hello";
+    f.close();
+
+    fstream f2("file.txt", ios::in);
+    string s;
+    f2 >> s;
+    cout << s;
+}
+
+Output:
+
+Hello
+🔹 31
+
+Q. Insert an element into a vector using push_back() and print it.
+
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main() {
+    vector<int> v;
+    v.push_back(5);
+    cout << v[0];
+}
+
+Output:
+
+5
+🔹 32
+
+Q. Add two elements to a vector and access using at().
+
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main() {
+    vector<int> v;
+    v.push_back(10);
+    v.push_back(20);
+    cout << v.at(1);
+}
+
+Output:
+
+20
+🔹 33
+
+Q. Remove last element using pop_back().
+
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main() {
+    vector<int> v = {1,2,3};
+    v.pop_back();
+    cout << v.size();
+}
+
+Output:
+
+2
+🔹 34
+
+Q. Access vector element using at().
+
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main() {
+    vector<int> v = {5,6,7};
+    cout << v.at(2);
+}
+
+Output:
+
+7
+🔹 35
+
+Q. Insert 5 elements using loop and push_back().
+
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main() {
+    vector<int> v;
+    for(int i=1;i<=5;i++)
+        v.push_back(i);
+
+    for(int i=0;i<v.size();i++)
+        cout << v[i] << " ";
+}
+
+Output:
+
+1 2 3 4 5
+🔹 36
+
+Q. Remove last element and display size.
+
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main() {
+    vector<int> v = {1,2,3};
+    v.pop_back();
+    cout << v.size();
+}
+
+Output:
+
+2
+🔹 37
+
+Q. Print first element using at().
+
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main() {
+    vector<int> v = {2,4,6};
+    cout << v.at(0);
+}
+
+Output:
+
+2
+🔹 38
+
+Q. Insert one element into vector.
+
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main() {
+    vector<int> v;
+    v.push_back(100);
+    cout << v[0];
+}
+
+Output:
+
+100
+🔹 39
+
+Q. Add element to existing vector.
+
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main() {
+    vector<int> v = {1,2};
+    v.push_back(3);
+
+    for(int i : v)
+        cout << i << " ";
+}
+
+Output:
+
+1 2 3
+🔹 40
+
+Q. Remove last element from vector.
+
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main() {
+    vector<int> v = {9,8,7};
+    v.pop_back();
+
+    for(int i : v)
+        cout << i << " ";
+}
+
+Output:
+
+9 8
+🔹 41
+
+Q. Write vector elements to a file.
+
+#include <fstream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> v = {1,2,3};
+    ofstream f("v.txt");
+
+    for(int x : v)
+        f << x << " ";
+}
+
+Output (file):
+
+1 2 3
+🔹 42
+
+Q. Read numbers from file into vector.
+
+#include <fstream>
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main() {
+    ifstream f("v.txt");
+    vector<int> v;
+    int x;
+
+    while(f >> x)
+        v.push_back(x);
+
+    for(int i : v)
+        cout << i << " ";
+}
+
+Output:
+
+1 2 3
+🔹 43
+
+Q. Write first vector element to file using at().
+
+#include <fstream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> v = {5,10};
+    ofstream f("a.txt");
+    f << v.at(0);
+}
+
+Output (file):
+
+5
+🔹 44
+
+Q. Store vector element and write to file.
+
+#include <fstream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> v;
+    v.push_back(1);
+
+    ofstream f("b.txt");
+    f << v[0];
+}
+
+Output (file):
+
+1
+🔹 45
+
+Q. Remove element and store size in file.
+
+#include <fstream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> v = {1,2};
+    v.pop_back();
+
+    ofstream f("c.txt");
+    f << v.size();
+}
+
+Output (file):
+
+1
+🔹 46
+
+Q. Read file into vector and print size.
+
+#include <fstream>
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main() {
+    ifstream f("d.txt");
+    vector<int> v;
+    int x;
+
+    while(f >> x)
+        v.push_back(x);
+
+    cout << v.size();
+}
+
+Output (depends on file)
+
+🔹 47
+
+Q. Write second element using at().
+
+#include <fstream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> v = {3,4};
+    ofstream f("e.txt");
+    f << v.at(1);
+}
+
+Output (file):
+
+4
+🔹 48
+
+Q. Write vector element using index.
+
+#include <fstream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> v;
+    v.push_back(9);
+    v.push_back(8);
+
+    ofstream f("f.txt");
+    f << v[1];
+}
+
+Output (file):
+
+8
+🔹 49
+
+Q. Remove element and write remaining value.
+
+#include <fstream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> v = {7,6};
+    v.pop_back();
+
+    ofstream f("g.txt");
+    f << v[0];
+}
+
+Output (file):
+
+7
+🔹 50
+
+Q. Store and write element using at().
+
+#include <fstream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> v;
+    v.push_back(100);
+
+    ofstream f("h.txt");
+    f << v.at(0);
+}
+
+Output (file):
+
+100
+🔹 51–70 (SHORT — exam revision style)
+
+I’ll keep these compact but complete so you can revise fast 👇
+
+🔹 51
+
+Q. Write text using ofstream
+
+ofstream f("x.txt"); f<<"Start";
+
+Output (file): Start
+
+🔹 52
+
+Q. Insert element in vector
+
+vector<int> v={1}; v.push_back(2);
+
+Output: 1 2
+
+🔹 53
+
+Q. Pop element
+
+vector<int> v={1,2,3}; v.pop_back();
+
+Output: 1 2
+
+🔹 54
+
+Q. Write vector to file
+
+vector<int> v={1,2}; ofstream f("y.txt");
+for(int i:v) f<<i;
+
+Output (file): 12
+
+🔹 55
+
+Q. Read from file
+
+ifstream f("y.txt"); int x; f>>x; cout<<x;
+
+Output: 12
+
+🔹 56
+
+Q. Access using at()
+
+vector<int> v={5,6}; cout<<v.at(1);
+
+Output: 6*/
+
